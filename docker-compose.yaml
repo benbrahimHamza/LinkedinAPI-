@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+    database:
+        image: 'postgres:alpine'
+        environment:
+            POSTGRES_PASSWORD: main
+            POSTGRES_USER: main
+            POSTGRES_DB: linkapi
+            POSTGRES_HOST_AUTH_METHOD: trust # allow all connections without a password. This is *not* recommended for prod
+        volumes:
+            - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+        ports:
+            - "5432:5432"
+        
+volumes:
+    database-data:
